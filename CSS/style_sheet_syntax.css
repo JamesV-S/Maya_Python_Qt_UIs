@@ -1,0 +1,89 @@
+
+/*FIND LISTS OF DOCUMENTATION FOR FURTHER INFO ON ALL THESE METHODS*/
+QPushButton { color: blueviolet }
+
+/*Several selectoprs can be specified using commas*/
+QPushButton, QLineEdit, QComboBox { color: red }
+
+/*equivalent to ^this^ sequence of 3 rules is:*/
+QPushButton { color: red }
+QLineEdit { color: red }
+QComboBox { color: red }
+
+/*to add multiple declarations to a single selector:*/
+/*Use ';'*/
+QPushButton { color: red; background-color: aqua }
+/*declaation is a list of 'property'*/
+
+/*-------------------------------*/
+/*Sub-controls*/
+/*Such as drop-down button of QComboBox
+or up & down arrows of a QSpinBox*/
+
+QComboBox::drop-down { image: url(dropdown.png) }
+
+/*Placing the drop-down in the margain rectangle of the QComboBox 
+instead of default Pddding rectangle:*/
+QComboBox {
+    margin-right: 20px;
+}
+QComboBox::drop-down {
+    subcontrol-origin: margin;
+}
+
+/*
+when the QComboBox's drop-down button is pressed, 
+we might like the arrow inside to be offset to give 
+a "pressed" effect. To achieve this, we can specify:
+*/
+
+QComboBox::down-arrow {
+    image: url(down_arrow.png);
+}
+/*when the button is pressed, change the position to give a reaction when pressed*/
+QComboBox::drop-arrow:pressed {
+    position: relative;
+    top: 1px; left: 1px;
+}
+
+/*-------------------------------*/
+/* Pseudo-States , they appear at the end pf a selector, 
+ with a colon(:) in between.*/
+
+/* This rule appplies when the mouse hovers over a QPushButton*/
+QPushButton:hover {
+    color: white
+}
+
+/* This rule appplies when the mouse hovers over a QPushButton, 
+to negate the pseudo- state use ':not()'*/
+QRadioButton:not(:hover) {
+    color: red 
+}
+
+/* Chaining them. When the mouse 'hovers' over a 'checked' QCheckBox*/
+/*LOGICAL AND*/
+QCheckBox:hover:checked { 
+    color: white 
+}
+
+/* negating a pseudo chain. When the mouse 'hovers' over a QPushButton
+ that 'isn't pressed': */
+QPushButton:hover:not(:pressed) {
+    color: blue
+}
+
+/*LOGICAL OR*/
+QCheckBox:hover, QCheckBox:checked {
+    color: purple
+}
+
+/*Pseudo-states can appear in combination with subcontrols:*/
+QComboBox::drop-down:hover { 
+    image: url(dropdown_bright.png) 
+}
+
+
+
+
+
