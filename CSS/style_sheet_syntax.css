@@ -1,9 +1,13 @@
 
 /*FIND LISTS OF DOCUMENTATION FOR FURTHER INFO ON ALL THESE METHODS*/
-QPushButton { color: blueviolet }
+QPushButton { 
+    color: blueviolet 
+}
 
 /*Several selectoprs can be specified using commas*/
-QPushButton, QLineEdit, QComboBox { color: red }
+QPushButton, QLineEdit, QComboBox { 
+    color: red 
+}
 
 /*equivalent to ^this^ sequence of 3 rules is:*/
 QPushButton { color: red }
@@ -12,15 +16,20 @@ QComboBox { color: red }
 
 /*to add multiple declarations to a single selector:*/
 /*Use ';'*/
-QPushButton { color: red; background-color: aqua }
+QPushButton { 
+    color: red; background-color: aqua 
+}
 /*declaation is a list of 'property'*/
 
-/*-------------------------------*/
+
+/*--------------------------------------------------------------------------*/
 /*Sub-controls*/
 /*Such as drop-down button of QComboBox
 or up & down arrows of a QSpinBox*/
 
-QComboBox::drop-down { image: url(dropdown.png) }
+QComboBox::drop-down { 
+    image: url(dropdown.png) 
+}
 
 /*Placing the drop-down in the margain rectangle of the QComboBox 
 instead of default Pddding rectangle:*/
@@ -40,13 +49,14 @@ a "pressed" effect. To achieve this, we can specify:
 QComboBox::down-arrow {
     image: url(down_arrow.png);
 }
-/*when the button is pressed, change the position to give a reaction when pressed*/
+/*when the button is pressed, 
+change the position to give a reaction when pressed*/
 QComboBox::drop-arrow:pressed {
     position: relative;
     top: 1px; left: 1px;
 }
 
-/*-------------------------------*/
+/*--------------------------------------------------------------------------*/                     
 /* Pseudo-States , they appear at the end pf a selector, 
  with a colon(:) in between.*/
 
@@ -83,7 +93,41 @@ QComboBox::drop-down:hover {
     image: url(dropdown_bright.png) 
 }
 
+/*--------------------------------------------------------------------------*/
+/* Conflict Resolution - when two rules are set on the same selector that
+conflict with each other. MUST take into account the specificity of selectors!*/
 
+QPushButton#okButton { color: gray } /*THIS IS A CONFLICT*/
+QPushButton { color: red } /*Both rules match QPushButton instances*/
+
+/* selectors with pseud-states are more specific.
+the button should be red unless the mouse hovers over it it'll be white */
+QPushButton:hover { 
+    color: white 
+}
+QPushButton {
+    color: red 
+}
+
+/* order of rules is important too:  */
+
+/* the second rule will take presidence so even if hovering the button won't 
+turn white when hovering */
+QPushButton:hover { color: white }
+QPushButton:enabled { color: red }
+
+/* Meanwhilem switching it, then the button will turn white even when enabled*/
+QPushButton:enabled { color: red }
+QPushButton:hover { color: white }
+
+/* Alternatively */
+QPushButton:hover:enabled { color: white }
+QPushButton:enabled { color: red }
+
+/*When it comes conflicts, the last rule is always used*/
+
+/*--------------------------------------------------------------------------*/
+/*Cascading*/
 
 
 

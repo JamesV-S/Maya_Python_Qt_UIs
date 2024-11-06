@@ -8,20 +8,15 @@ from maya import OpenMayaUI as omui
 try:
     from PySide6 import QtCore, QtWidgets, QtGui
     from PySide6.QtCore import Qt
-    from PySide6.QtGui import QIcon, QFont
+    from PySide6.QtGui import QIcon
     from PySide6.QtWidgets import (QWidget)
     from shiboken6 import wrapInstance
 except ModuleNotFoundError:
     from PySide2 import QtCore, QtWidgets, QtGui
     from PySide2.QtCore import Qt
-    from PySide2.QtGui import QIcon, QFont
+    from PySide2.QtGui import QIcon
     from PySide2.QtWidgets import (QWidget)
     from shiboken2 import wrapInstance
-
-# Behave like a native maya window
-# convert maya window pinter to pyside^ QWidget obj
-mayaMainWindowPtr = omui.MQtUtil.mainWindow()
-mayaMainWindow = wrapInstance(int(mayaMainWindowPtr), QWidget)
 
 # from PySide6 import QtCore, QtWidgets, QtGui
 import sys
@@ -30,14 +25,24 @@ import importlib
 import os.path
 
 '''
+from style_utils import (customToolTip)
+importlib.reload(customToolTip)
+'''
+
+# Behave like a native maya window
+# convert maya window pinter to pyside^ QWidget obj
+mayaMainWindowPtr = omui.MQtUtil.mainWindow()
+mayaMainWindow = wrapInstance(int(mayaMainWindowPtr), QWidget)
+
+'''
 import sys
 import importlib
 
-from Maya_Python_Qt_UIs import maya_widget_ui_001
-importlib.reload(maya_widget_ui_001)
-maya_widget_ui_001.main()
+from Maya_Python_Qt_UIs import maya_widget_ui_002
+importlib.reload(maya_widget_ui_002)
+maya_widget_ui_002.main()
 '''
- 
+
 def delete_existing_ui(ui_name):
     if cmds.window(ui_name, exists=True):
         cmds.deleteUI(ui_name, window=True)
@@ -61,8 +66,6 @@ class MyWidget(QtWidgets.QWidget):
         # can resize big or small
         self.resize(300, 150)
         # self.setWindowTitle("Jmvs_widget_ui")
-        
-        
 
         # call the stylesheet
         stylesheet_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 
@@ -85,17 +88,18 @@ class MyWidget(QtWidgets.QWidget):
         self.button_02.clicked.connect(self.second_btn_func)
         self.button_03.clicked.connect(self.third_btn_func)
     
+
     def create_radio_button(self):
         self.grp_box = QtWidgets.QGroupBox("GroupBoxTitle_001", self)
-        font = QFont("Times New Roman",  12)
+        font = QtGui.QFont("Times New Roman",  12)
         font.setBold(True)
         self.grp_box.setFont(font)
         
 
         hbox_layout = QtWidgets.QHBoxLayout()
-        rad1 = QtWidgets.QRadioButton("Rd_button")
-        rad1.setChecked(False)
-        hbox_layout.addWidget(rad1)
+        self.rad1 = QtWidgets.QRadioButton("Rd_button")
+        self.rad1.setChecked(False)
+        hbox_layout.addWidget(self.rad1)
         self.grp_box.setLayout(hbox_layout)
 
         vbox = QtWidgets.QHBoxLayout()
@@ -118,7 +122,7 @@ class MyWidget(QtWidgets.QWidget):
         # Group box:
         
         self.grp_box = QtWidgets.QGroupBox("GroupBoxTitle_002", self)
-        font = QFont("Times New Roman",  12)
+        font = QtGui.QFont("Times New Roman",  12)
         font.setBold(True)
         self.grp_box.setFont(font)
         #layout = QtWidgets.QVBoxLayout(self)
@@ -126,9 +130,9 @@ class MyWidget(QtWidgets.QWidget):
         #layout.addWidget(QtWidgets.QLabel("Inside GroupBox"))
         # group_box.setLayout(layout)
         hbox_layout = QtWidgets.QHBoxLayout()
-        rad1 = QtWidgets.QRadioButton("Rd_button")
-        rad1.setChecked(False)
-        hbox_layout.addWidget(rad1)
+        self.rad1 = QtWidgets.QRadioButton("Rd_button")
+        self.rad1.setChecked(False)
+        hbox_layout.addWidget(self.rad1)
         self.grp_box.setLayout(hbox_layout)
         
 
@@ -230,6 +234,25 @@ class MyWidget(QtWidgets.QWidget):
         tree_view.setModel(model)
 
         #---------------------------------------------------------------------
+        # QToolTip
+        self.rad1.setToolTip("This is a radio button that does jack-shit atm")
+        self.button_01.setToolTip("This button changes the language above")
+        self.button_03.setToolTip("This button prints a message")
+        
+        # Add a shadow effect to the tooltip - must call
+        ''' THIS DOESN'T work on The QToolTip
+        effect = QtWidgets.QGraphicsDropShadowEffect()
+        effect.setBlurRadius(10)
+        effect.setColor(QtGui.QColor(0, 0, 0, 160))
+        effect.setOffset(4, 4)
+        '''
+        
+        # customToolTip:
+        #custom_tooltip = CustomToolTip("this is a custom tool tip!", self)
+        #self.button_01.installEventFilter(self)
+        #self.custom_tooltip = custom_tooltip   
+
+        #---------------------------------------------------------------------
         # Applying differtent styles to same type of widget
         '''
         self.button_01.setObjectName("button_01")
@@ -289,8 +312,21 @@ class MyWidget(QtWidgets.QWidget):
         self.grid_layout.addWidget(self.combo_box, 0, 2, 1, 1)
         ''' 
         # Connections:
-        
-        
+
+    # installs an event filter on a button to show and 
+    # hide the custom tooltip based on hover events.  
+    def eventFiller(self, obj, event):
+        if event.type() == QtCore.QEvent.ToolTip:
+            print("EVENT FILTER TRUE")
+            self.custom_tooltip.move(event.globalPos())
+            self.custom_tooltip.show()
+            return True
+        elif event.type() == QtCore.QEvent.Leave:
+            print("EVENT FILTER FALSE")
+            self.custom_tooltip.hide()
+            return True
+        return super().eventFilter(obj, event) 
+
     def magic_func(self):
         self.text.setText(random.choice(self.hello))
 

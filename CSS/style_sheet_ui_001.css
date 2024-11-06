@@ -133,3 +133,14 @@ QScrollBar::handle:horizontal {
     border-radius: 5px;
     min-height: 20px;
 }
+
+QToolTip {
+    background-color: rgba(0, 0, 0, 0.733);
+    color:white;
+    font-family:'sans-serif'; /*'Lucida Grande' ,, Tahoma, Geneva, Verdana, sans-serif, 'ource Code Pro',  'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif*/
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px;
+    border: 1px solid #ffff;
+    border-radius: 10px; 
+}
