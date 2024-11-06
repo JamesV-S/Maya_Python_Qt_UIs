@@ -1,0 +1,135 @@
+
+/*
+QPushButton#button_01 {
+    color:azure ;
+    background-color: black;
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: gold;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+}
+
+QPushButton#button_02 {
+    color:azure ;
+    background-color: blue;
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: orange;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+}
+*/
+
+QPushButton[specialButton="true"] {
+    /*color: azure;*/
+    background-image: url(C:/Docs/maya/scripts/Maya_Python_Qt_UIs/images/star_wars_space_background.jpg);
+    background-size:50px 50px;
+    border-style:double;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: gold;
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+}
+
+
+QPushButton[specialButton="true"]:hover {
+    color: darkcyan
+}
+
+QPushButton[specialButton="false"]  {
+    color:rgb(126, 13, 13) ;
+    background-color: rgb(240, 226, 150);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: rgb(224, 157, 93);
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+}
+
+QLabel {
+    color:rgb(20, 220, 153) ;
+    background-color: black;
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 2px;
+    /*border-color: crimson;*/
+    font: bold 14px;
+    min-width: 10em;
+    padding: 6px;
+}
+
+QCheckBox {
+    spacing: 5px;
+    color:rgb(126, 13, 13)
+}
+
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+    color:rgb(20, 220, 153);
+}
+
+QHeaderView::sectio {
+    background-color: #3f4348;
+    color: #fff;
+    padding: 3px;
+    border-radius: 4px;
+}
+
+QTreeView#treeView::item:selected:active{
+    /*; border-radius: 5px;*/
+    background-color:rgb(8, 75, 53); /*darkolivegreen*/
+    color:white;
+    
+}
+
+QTreeView#treeView {
+    color: rgb(255, 226, 63);
+    border-radius: 5px;
+    padding:5px;
+    border-color: crimson;
+}
+
+* {
+    background-color:rgba(87, 6, 19, 0.418); /*rgb(44, 3, 3), rgba(44, 21, 25, 0.418)*/
+    color: rgb(20, 220, 153);
+}
+
+QComboBox {
+    border: none;
+    background-color: black;
+    border-bottom: rgb(255, 226, 63);
+}
+
+QGroupBox {
+    color:rgb(44, 3, 3);
+    background-color: rgb(255, 226, 63);
+    
+    /*border-radius: 1px;*/
+}
+
+
+/*Scroll Barss!!!!*/
+QScrollBar:vertical {
+    width: 10px;
+}
+QScrollBar:horizontal {
+    height: 10px;
+}
+
+/*style of a scroll bar!*/
+QScrollBar::handle:vertical,
+QScrollBar::handle:horizontal {
+    background: #666;
+    border-radius: 5px;
+    min-height: 20px;
+}
