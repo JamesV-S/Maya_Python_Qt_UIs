@@ -294,6 +294,11 @@ class MyWidget(QtWidgets.QWidget):
         self.layout.addWidget(tree_view)
         '''      
         # grid layout:
+        
+                col#0        col#1        col#2
+        row#0   cell         cell         cell
+        row#1   cell         cell         cell
+        
         self.grid_layout = QtWidgets.QGridLayout(self)
         # First 2: addWidget(widget, row, column)
         # Optional 3rd & 4th: addWidget(widget, row, column, rowSpan, columnSpan)
