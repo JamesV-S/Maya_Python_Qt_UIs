@@ -278,7 +278,15 @@ class MyWidget(QtWidgets.QWidget):
             item.setProperty("specialButton", False)
         
         #----------------------------------------------------------------------
+        # QSpinBox
+        spin_box = QtWidgets.QSpinBox()
+        spin_box.setMinimum(0)
+        spin_box.setMaximum(10)
         
+        dbl_spin_box = QtWidgets.QDoubleSpinBox()
+        dbl_spin_box.setMinimum(0)
+        dbl_spin_box.setMaximum(20)
+        #----------------------------------------------------------------------
         # basic vertical layout
         #self.layout = QtWidgets.QVBoxLayout(self)
             
@@ -290,6 +298,8 @@ class MyWidget(QtWidgets.QWidget):
         #self.layout.addWidget(self.button_02)
         self.layout.addWidget(self.button_03)
         self.layout.addWidget(combo_box)
+        self.layout.addWidget(spin_box)
+        self.layout.addWidget(dbl_spin_box) 
         self.layout.addWidget(self.grp_box) # tree_view  
         self.layout.addWidget(tree_view)
         '''      
