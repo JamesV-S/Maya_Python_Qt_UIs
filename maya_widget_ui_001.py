@@ -2,7 +2,14 @@
 
 import maya.cmds as cmds
 from maya import OpenMayaUI as omui
+'''
+import sys
+import importlib
 
+from Maya_Python_Qt_UIs import maya_widget_ui_001
+importlib.reload(maya_widget_ui_001)
+maya_widget_ui_001.main()
+'''
 # 'PySide' module provides access to the Qt APIs as its submodule, 
 # & importing the following:
 try:
@@ -28,15 +35,6 @@ import sys
 import random
 import importlib
 import os.path
-
-'''
-import sys
-import importlib
-
-from Maya_Python_Qt_UIs import maya_widget_ui_001
-importlib.reload(maya_widget_ui_001)
-maya_widget_ui_001.main()
-'''
  
 def delete_existing_ui(ui_name):
     if cmds.window(ui_name, exists=True):
