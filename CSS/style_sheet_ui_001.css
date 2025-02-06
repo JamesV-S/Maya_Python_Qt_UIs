@@ -67,6 +67,11 @@ QLabel {
     padding: 6px;
 }
 
+QLabel#image_label{
+    /*color: azure;*/
+    background-image: url(C:/Docs/maya/scripts/Maya_Python_Qt_UIs/images/star_wars_space_background.jpg);
+}
+
 QCheckBox {
     spacing: 5px;
     color:rgb(126, 13, 13)

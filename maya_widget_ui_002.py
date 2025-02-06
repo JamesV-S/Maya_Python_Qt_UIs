@@ -1,5 +1,4 @@
 
-
 import maya.cmds as cmds
 from maya import OpenMayaUI as omui
 
@@ -50,10 +49,9 @@ def delete_existing_ui(ui_name):
 class MyWidget(QtWidgets.QWidget):
     def __init__(self, *args, **kwargs):
         super(MyWidget, self).__init__(*args, **kwargs)
-        version = "001"
+        version = "002"
         delete_existing_ui(f"JmvsWidgetUI{version}")
         self.setObjectName(f"JmvsWidgetUI{version}")
-        
         self.initUI()
         # self.create_radio_button()
         
@@ -86,7 +84,7 @@ class MyWidget(QtWidgets.QWidget):
 
         self.button_01.clicked.connect(self.magic_func)
         self.button_02.clicked.connect(self.second_btn_func)
-        self.button_03.clicked.connect(self.third_btn_func)
+        # self.button_03.clicked.connect(self.third_btn_func)
     
 
     def create_radio_button(self):
@@ -94,7 +92,6 @@ class MyWidget(QtWidgets.QWidget):
         font = QtGui.QFont("Times New Roman",  12)
         font.setBold(True)
         self.grp_box.setFont(font)
-        
 
         hbox_layout = QtWidgets.QHBoxLayout()
         self.rad1 = QtWidgets.QRadioButton("Rd_button")
@@ -115,7 +112,8 @@ class MyWidget(QtWidgets.QWidget):
         self.button_02 = QtWidgets.QPushButton("Second Button")
         self.text = QtWidgets.QLabel("Hello World", 
                                      alignment=QtCore.Qt.AlignCenter)        
-        self.button_03 = QtWidgets.QPushButton("Third Button")
+        self.button_03 = QtWidgets.QLabel()
+        self.button_03.setObjectName("image_label")
         self.check_box = QtWidgets.QCheckBox()
         
         #---------------------------------------------------------------------
@@ -141,7 +139,7 @@ class MyWidget(QtWidgets.QWidget):
         combo_box.addItems(["Uno", "Dos", "Tres"])
 
         # QHeaderView - (typically used in conjunction with QtableView or 
-        # QTreeView). Let's me customise headers. 
+        # QTreeView). Let's me customise headers
         tree_view = QtWidgets.QTreeView()
         header = tree_view.header()
         header.setSectionResizeMode(QtWidgets.QHeaderView.ResizeToContents)
@@ -156,7 +154,7 @@ class MyWidget(QtWidgets.QWidget):
         id = "0"
 
         model = QtGui.QStandardItemModel()
-        ''' WIP - type on different colmns and try get dedicated hierarchy's 
+        ''' WIP - type of different colmns and try get dedicated hierarchy's 
         underthem correctly!
 
         parent_item = model.invisibleRootItem()

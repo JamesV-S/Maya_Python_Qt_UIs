@@ -82,7 +82,7 @@ QSpinBox::down-button {
 QLineEdit {
     padding: 5px 10px;
     border-radius: 1px;
-    background-color: #1b1e20;
+    background-color: #4f7b7f;
     /* border: 1px solid white; */
 }
 
@@ -204,4 +204,16 @@ QToolBox {
     background-color: #1b1e20;
     border-radius: 10px;
     border-image: none;
+}
+
+/* testing colours */
+QToolBox {
+    background-color: #0602e5;
+    border-radius: 10px;
+    border-image: none;
+}
+
+QWidget::title {
+    background-color: #0602e5;
+    color: rgb(20, 220, 117);
 }
